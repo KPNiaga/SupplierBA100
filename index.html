@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borang Kemaskini Rekod Pembekal BA100 | KPNiaga</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .input-focus:focus {
+            border-color: #0284c7;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+            outline: none;
+        }
+        .badge-chip {
+            animation: fadeIn 0.2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800 antialiased bg-slate-50">
+
+    <!-- Header Utama -->
+    <header class="bg-white border-b border-slate-200 shadow-sm py-5 px-4 sm:px-8 sticky top-0 z-30">
+        <div class="max-w-4xl mx-auto flex flex-row items-center justify-between gap-4">
+            
+            <!-- Bahagian Kiri: Logo 1 & Tajuk -->
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <!-- RUANG UPLOAD LOGO 1 -->
+                <!-- Sila gantikan elemen <div> di bawah dengan <img> anda sendiri, cth:
+                     <img src="path/to/logo1.png" alt="Logo KPNiaga" class="h-12 sm:h-16 w-auto object-contain">
+                -->
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-center p-1 text-slate-400 hover:border-slate-400 transition shrink-0" title="Ruang Logo 1">
+                    <i class="fa-regular fa-image text-lg text-slate-400"></i>
+                    <span class="text-[9px] font-semibold uppercase tracking-wider mt-0.5 text-slate-500">Logo 1</span>
+                </div>
+
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight leading-snug">KPNiaga</h1>
+                    <p class="text-xs sm:text-sm text-slate-500 font-medium">Seksyen Perdagangan & Peruncitan (SPP)</p>
+                </div>
+            </div>
+
+            <!-- Bahagian Kanan: Logo 2 -->
+            <div class="flex items-center">
+                <!-- RUANG UPLOAD LOGO 2 -->
+                <!-- Sila gantikan elemen <div> di bawah me-ngan <img> anda sendiri, cth:
+                     <img src="path/to/logo2.png" alt="Logo Program BA100" class="h-12 sm:h-16 w-auto object-contain">
+                -->
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-center p-1 text-slate-400 hover:border-slate-400 transition shrink-0" title="Ruang Logo 2">
+                    <i class="fa-regular fa-image text-lg text-slate-400"></i>
+                    <span class="text-[9px] font-semibold uppercase tracking-wider mt-0.5 text-slate-500">Logo 2</span>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Content Utama -->
+    <main class="flex-grow py-8 px-4 sm:px-8">
+        <div class="max-w-4xl mx-auto space-y-6">
+
+            <!-- Notis Pengenalan -->
+            <div class="bg-blue-50/80 border border-blue-200/80 rounded-2xl p-5 sm:p-6 text-slate-700 shadow-sm">
+                <div class="flex items-start space-x-3.5 sm:space-x-4">
+                    <div class="p-2.5 bg-blue-600 text-white rounded-xl shadow-sm shrink-0 mt-0.5">
+                        <i class="fa-solid fa-circle-info text-lg"></i>
+                    </div>
+                    <div class="space-y-1">
+                        <h2 class="text-base sm:text-lg font-semibold text-slate-900">Makluman Kemaskini Rekod Pembekal BA100</h2>
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            Seksyen Perdagangan & Peruncitan (SPP) sedang mengemaskini rekod pembekal yang pernah mendaftar di bawah Program BA100. Borang ini adalah untuk rekod maklumat pembekal terkini bagi memastikan data senarai pembekal sentiasa lengkap, sahih dan berkesan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Borang Utama -->
+            <div id="formContainer" class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+                <div class="border-b border-slate-100 bg-slate-50/50 px-6 py-4 flex items-center justify-between">
+                    <div>
+                        <h2 class="text-base font-bold text-slate-800">Maklumat Maklum Balas Pembekal</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Sila lengkapkan semua medan maklumat wajib (*)</p>
+                    </div>
+                    <span class="text-xs font-medium text-slate-400 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">Borang BA100</span>
+                </div>
+
+                <form id="supplierForm" onsubmit="handleFormSubmit(event)" class="p-6 sm:p-8 space-y-6">
+                    
+                    <!-- Seksyen 1: Maklumat Syarikat -->
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-2 text-slate-900 font-semibold text-sm uppercase tracking-wide border-b border-slate-100 pb-2">
+                            <i class="fa-solid fa-building text-slate-500"></i>
+                            <span>1. Maklumat Syarikat</span>
+                        </div>
+
+                        <!-- 1. Nama Syarikat -->
+                        <div>
+                            <label for="namaSyarikat" class="block text-sm font-medium text-slate-700 mb-1.5">
+                                Nama Syarikat <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="namaSyarikat" required
+                                placeholder="Contoh: KPNiaga Holdings Sdn. Bhd."
+                                class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-900 placeholder-slate-400 input-focus transition bg-white">
+                        </div>
+
+                        <!-- 2. Alamat Penuh Syarikat -->
+                        <div>
+                            <label for="alamatSyarikat" class="block text-sm font-medium text-slate-700 mb-1.5">
+                                Alamat Penuh Syarikat <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="alamatSyarikat" rows="3" required
+                                placeholder="Masukkan nombor bangunan, jalan, poskod, bandar dan negeri..."
+                                class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-900 placeholder-slate-400 input-focus transition bg-white resize-y min-h-[90px]"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Seksyen 2: Maklumat Pegawai -->
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-center space-x-2 text-slate-900 font-semibold text-sm uppercase tracking-wide border-b border-slate-100 pb-2">
+                            <i class="fa-solid fa-user-tie text-slate-500"></i>
+                            <span>2. Maklumat Pegawai Hubungan</span>
+                        </div>
+
+                        <!-- 3. Nama Pegawai -->
+                        <div>
+                            <label for="namaPegawai" class="block text-sm font-medium text-slate-700 mb-1.5">
+                                Nama Pegawai untuk Dihubungi <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="namaPegawai" required
+                                placeholder="Contoh: Encik Ahmad bin Hassan"
+                                class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-900 placeholder-slate-400 input-focus transition bg-white">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- 4. No. Telefon Pegawai -->
+                            <div>
+                                <label for="noTelefon" class="block text-sm font-medium text-slate-700 mb-1.5">
+                                    No. Telefon Pegawai <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <input type="tel" id="noTelefon" required
+                                        placeholder="Contoh: 012-3456789 / 03-88881234"
+                                        class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-900 placeholder-slate-400 input-focus transition bg-white">
+                                </div>
+                            </div>
+
+                            <!-- 5. E-mail Pegawai -->
+                            <div>
+                                <label for="emailPegawai" class="block text-sm font-medium text-slate-700 mb-1.5">
+                                    E-mail Pegawai <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <input type="email" id="emailPegawai" required
+                                        placeholder="Contoh: pegawai@syarikat.com"
+                                        class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-900 placeholder-slate-400 input-focus transition bg-white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Seksyen 3: Maklumat Produk & Jenama -->
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-center space-x-2 text-slate-900 font-semibold text-sm uppercase tracking-wide border-b border-slate-100 pb-2">
+                            <i class="fa-solid fa-box-archive text-slate-500"></i>
+                            <span>3. Maklumat Produk & Jenama</span>
+                        </div>
+
+                        <!-- 6. Kategori Produk -->
+                        <div>
+                            <label for="kategoriProduk" class="block text-sm font-medium text-slate-700 mb-1.5">
+                                Kategori Produk <span class="text-red-500">*</span>
+                            </label>
+                            <select id="kategoriProduk" required
+                                class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-900 input-focus transition bg-white">
+                                <option value="" disabled selected>-- Sila Pilih Kategori Utama --</option>
+                                <option value="Barangan Makanan & Minuman (F&B)">Barangan Makanan & Minuman (F&B)</option>
+                                <option value="Barangan Keperluan Asas Dapur">Barangan Keperluan Asas Dapur</option>
+                                <option value="Penjagaan Diri & Kosmetik">Penjagaan Diri & Kosmetik</option>
+                                <option value="Pembersih & Keperluan Isi Rumah">Pembersih & Keperluan Isi Rumah</option>
+                                <option value="Produk PKS / Buatan Malaysia">Produk PKS / Buatan Malaysia</option>
+                                <option value="Produk Sejuk Beku & Basah">Produk Sejuk Beku & Basah</option>
+                                <option value="Lain-Lain Kategori">Lain-Lain Kategori</option>
+                            </select>
+                        </div>
+
+                        <!-- 7. Jenama Produk (Multi-tag Input) -->
+                        <div>
+                            <label for="jenamaInput" class="block text-sm font-medium text-slate-700 mb-1.5">
+                                Jenama Produk <span class="text-red-500">*</span>
+                            </label>
+                            <p class="text-xs text-slate-500 mb-2">Taip nama jenama dan tekan <kbd class="px-1.5 py-0.5 text-[11px] font-sans font-semibold bg-slate-100 border border-slate-300 rounded">Enter</kbd> atau butang "Tambah".</p>
+                            
+                            <div class="flex gap-2 mb-3">
+                                <input type="text" id="jenamaInput"
+                                    placeholder="Contoh: Jenama Murni, EcoFresh, dll."
+                                    class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-900 placeholder-slate-400 input-focus transition bg-white">
+                                <button type="button" onclick="addBrand()"
+                                    class="px-4 py-2.5 bg-slate-800 text-white rounded-xl text-sm font-medium hover:bg-slate-700 transition flex items-center gap-1.5 shrink-0 shadow-sm">
+                                    <i class="fa-solid fa-plus text-xs"></i>
+                                    <span>Tambah</span>
+                                </button>
+                            </div>
+
+                            <!-- List Tag Jenama -->
+                            <div id="brandTagsList" class="flex flex-wrap gap-2 min-h-[38px] p-2 bg-slate-50 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 italic self-center px-2" id="noBrandsText">Belum ada jenama ditambah...</span>
+                            </div>
+                            <input type="hidden" id="jenamaProdukHidden" required>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="pt-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <button type="button" onclick="resetForm()" 
+                            class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 text-sm font-medium hover:bg-slate-100 hover:text-slate-900 transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-rotate-left text-xs"></i>
+                            <span>Kosongkan Borang</span>
+                        </button>
+
+                        <button type="submit" 
+                            class="w-full sm:w-auto px-7 py-3 bg-blue-700 hover:bg-blue-800 text-white rounded-xl text-sm font-semibold transition shadow-md shadow-blue-700/20 flex items-center justify-center gap-2">
+                            <span>Semak & Hantar Rekod</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Modal Semakan / Preview Maklumat -->
+            <div id="confirmModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+                <div class="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl space-y-5 transform transition-all">
+                    
+                    <div class="flex items-start justify-between border-b border-slate-100 pb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2.5 bg-blue-100 text-blue-700 rounded-xl">
+                                <i class="fa-solid fa-clipboard-check text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900">Pengesahan Maklumat</h3>
+                                <p class="text-xs text-slate-500">Sila semak semula butiran sebelum dihantar ke Google Sheet SPP.</p>
+                            </div>
+                        </div>
+                        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1">
+                            <i class="fa-solid fa-xmark text-lg"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3.5 text-sm bg-slate-50 p-4 rounded-xl border border-slate-200/80 max-h-[60vh] overflow-y-auto">
+                        <div class="grid grid-cols-3 border-b border-slate-200/60 pb-2">
+                            <span class="text-slate-500 font-medium">Nama Syarikat:</span>
+                            <span id="previewNamaSyarikat" class="col-span-2 font-semibold text-slate-900"></span>
+                        </div>
+                        <div class="grid grid-cols-3 border-b border-slate-200/60 pb-2">
+                            <span class="text-slate-500 font-medium">Alamat Penuh:</span>
+                            <span id="previewAlamatSyarikat" class="col-span-2 text-slate-800 whitespace-pre-line"></span>
+                        </div>
+                        <div class="grid grid-cols-3 border-b border-slate-200/60 pb-2">
+                            <span class="text-slate-500 font-medium">Pegawai Hubungan:</span>
+                            <span id="previewNamaPegawai" class="col-span-2 text-slate-800"></span>
+                        </div>
+                        <div class="grid grid-cols-3 border-b border-slate-200/60 pb-2">
+                            <span class="text-slate-500 font-medium">No. Telefon:</span>
+                            <span id="previewNoTelefon" class="col-span-2 text-slate-800"></span>
+                        </div>
+                        <div class="grid grid-cols-3 border-b border-slate-200/60 pb-2">
+                            <span class="text-slate-500 font-medium">E-mail:</span>
+                            <span id="previewEmailPegawai" class="col-span-2 text-slate-800"></span>
+                        </div>
+                        <div class="grid grid-cols-3 border-b border-slate-200/60 pb-2">
+                            <span class="text-slate-500 font-medium">Kategori Produk:</span>
+                            <span id="previewKategoriProduk" class="col-span-2 text-slate-800 font-medium"></span>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <span class="text-slate-500 font-medium">Jenama Produk:</span>
+                            <span id="previewJenamaProduk" class="col-span-2 text-slate-800"></span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-end space-x-3 pt-2">
+                        <button type="button" onclick="closeModal()" 
+                            class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-sm font-medium hover:bg-slate-100 transition">
+                            Sunting Semula
+                        </button>
+                        <button type="button" id="btnSubmitConfirm" onclick="confirmAndSubmit()" 
+                            class="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-xl text-sm font-semibold transition shadow-md shadow-green-600/20 flex items-center gap-2">
+                            <i class="fa-solid fa-check text-xs"></i>
+                            <span>Sahkan & Hantar</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Paparan Kejayaan Hantar -->
+            <div id="successCard" class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-8 text-center space-y-6 hidden">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner">
+                    <i class="fa-solid fa-check-double"></i>
+                </div>
+
+                <div class="space-y-2 max-w-md mx-auto">
+                    <h2 class="text-2xl font-bold text-slate-900">Rekod Berjaya Dikemaskini!</h2>
+                    <p class="text-sm text-slate-600">
+                        Maklumat pembekal anda telah selamat direkodkan ke dalam Google Sheet Seksyen Perdagangan & Peruncitan (SPP), KPNiaga.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 max-w-xs mx-auto text-center space-y-1">
+                    <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">No. Rujukan Pendaftaran</span>
+                    <p id="refNumber" class="text-lg font-mono font-bold text-blue-700">BA100-2026-XXXX</p>
+                </div>
+
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button onclick="window.print()" class="w-full sm:w-auto px-5 py-2.5 bg-slate-800 text-white rounded-xl text-sm font-medium hover:bg-slate-700 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-print text-xs"></i>
+                        <span>Cetak Resit Rekod</span>
+                    </button>
+                    <button onclick="createNewSubmission()" class="w-full sm:w-auto px-5 py-2.5 bg-blue-50 text-blue-700 border border-blue-200 rounded-xl text-sm font-medium hover:bg-blue-100 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-plus text-xs"></i>
+                        <span>Hantar Rekod Lain</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 px-4 text-center mt-auto">
+        <div class="max-w-4xl mx-auto space-y-1 text-xs text-slate-600">
+            <p class="font-medium text-slate-700">&copy; 2026 KPNiaga. Hak Cipta Terpelihara.</p>
+            <p class="text-slate-500">oleh Seksyen Perdagangan & Peruncitan, KPNiaga</p>
+        </div>
+    </footer>
+
+    <script>
+        // ================================================================
+        // WAJIB: TAMPAL PAUTAN WEB APP GOOGLE APPS SCRIPT ANDA DI BAWAH:
+        // Contoh: "https://script.google.com/macros/s/AKfycbXXXXXXXXX/exec"
+        // ================================================================
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwTWeLzgeriEnL9YiJu69vrdAiUmcyA1fdy3QQddxfzBSWcp2mqGDoQUEyWCZORX7YiIg/exec";
+
+        // Array menyimpan senarai jenama
+        let brandsList = [];
+
+        // Handler untuk kekunci 'Enter' pada input jenama
+        document.getElementById('jenamaInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addBrand();
+            }
+        });
+
+        // Fungsi Tambah Jenama
+        function addBrand() {
+            const input = document.getElementById('jenamaInput');
+            const value = input.value.trim();
+
+            if (value && !brandsList.includes(value)) {
+                brandsList.push(value);
+                input.value = '';
+                renderBrands();
+            } else if (brandsList.includes(value)) {
+                alert('Jenama ini telah ditambah ke dalam senarai.');
+            }
+        }
+
+        // Fungsi Padam Jenama
+        function removeBrand(index) {
+            brandsList.splice(index, 1);
+            renderBrands();
+        }
+
+        // Fungsi Kemaskini Paparan Tag Jenama
+        function renderBrands() {
+            const container = document.getElementById('brandTagsList');
+            const hiddenInput = document.getElementById('jenamaProdukHidden');
+
+            if (brandsList.length === 0) {
+                container.innerHTML = '<span class="text-xs text-slate-400 italic self-center px-2" id="noBrandsText">Belum ada jenama ditambah...</span>';
+                hiddenInput.value = '';
+            } else {
+                container.innerHTML = brandsList.map((brand, idx) => `
+                    <span class="badge-chip inline-flex items-center gap-1.5 px-3 py-1 bg-blue-100/80 border border-blue-200 text-blue-900 rounded-lg text-xs font-semibold">
+                        <span>${escapeHtml(brand)}</span>
+                        <button type="button" onclick="removeBrand(${idx})" class="text-blue-500 hover:text-red-600 transition ml-1">
+                            <i class="fa-solid fa-xmark text-xs"></i>
+                        </button>
+                    </span>
+                `).join('');
+                hiddenInput.value = brandsList.join(', ');
+            }
+        }
+
+        // Semak borang dan buka modal
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            if (brandsList.length === 0) {
+                alert('Sila masukkan sekurang-kurangnya satu Jenama Produk.');
+                document.getElementById('jenamaInput').focus();
+                return;
+            }
+
+            // Isikan data ke preview modal
+            document.getElementById('previewNamaSyarikat').innerText = document.getElementById('namaSyarikat').value;
+            document.getElementById('previewAlamatSyarikat').innerText = document.getElementById('alamatSyarikat').value;
+            document.getElementById('previewNamaPegawai').innerText = document.getElementById('namaPegawai').value;
+            document.getElementById('previewNoTelefon').innerText = document.getElementById('noTelefon').value;
+            document.getElementById('previewEmailPegawai').innerText = document.getElementById('emailPegawai').value;
+            document.getElementById('previewKategoriProduk').innerText = document.getElementById('kategoriProduk').value;
+            document.getElementById('previewJenamaProduk').innerText = brandsList.join(', ');
+
+            // Tunjukkan modal
+            document.getElementById('confirmModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('confirmModal').classList.add('hidden');
+        }
+
+        // Sahkan hantaran & POST data ke Google Apps Script
+        async function confirmAndSubmit() {
+            const btnSubmit = document.getElementById('btnSubmitConfirm');
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Menghantar Rekod...</span>`;
+
+            // Jana Nombor Rujukan Rawak
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            const refNum = `BA100-2026-${randomNum}`;
+
+            const payload = {
+                refNumber: refNum,
+                namaSyarikat: document.getElementById('namaSyarikat').value,
+                alamatSyarikat: document.getElementById('alamatSyarikat').value,
+                namaPegawai: document.getElementById('namaPegawai').value,
+                noTelefon: document.getElementById('noTelefon').value,
+                emailPegawai: document.getElementById('emailPegawai').value,
+                kategoriProduk: document.getElementById('kategoriProduk').value,
+                jenamaProduk: brandsList.join(', ')
+            };
+
+            // Hantar ke Google Apps Script jika URL telah dikemas kini
+            if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "MASUKKAN_URL_APPS_SCRIPT_ANDA_DI_SINI") {
+                try {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'text/plain;charset=utf-8'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                } catch (err) {
+                    console.error("Isu semasa menghantar data ke Google Sheet:", err);
+                }
+            } else {
+                console.warn("Google Script URL belum dimasukkan di dalam skrip JavaScript.");
+            }
+
+            document.getElementById('refNumber').innerText = refNum;
+            closeModal();
+
+            // Tunjukkan paparan kejayaan
+            document.getElementById('formContainer').classList.add('hidden');
+            document.getElementById('successCard').classList.remove('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Reset butang
+            btnSubmit.disabled = false;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-check text-xs"></i> <span>Sahkan & Hantar</span>`;
+        }
+
+        // Reset keseluruhan borang
+        function resetForm() {
+            document.getElementById('supplierForm').reset();
+            brandsList = [];
+            renderBrands();
+        }
+
+        // Hantar permohonan baharu
+        function createNewSubmission() {
+            resetForm();
+            document.getElementById('successCard').classList.add('hidden');
+            document.getElementById('formContainer').classList.remove('hidden');
+        }
+
+        // Helper sanitasi string
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
