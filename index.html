@@ -40,11 +40,7 @@
             
             <!-- Bahagian Kiri: Logo 1 & Tajuk -->
             <div class="flex items-center space-x-3 sm:space-x-4">
-                <!-- RUANG UPLOAD LOGO 1 -->
-                <!-- Sila gantikan elemen <div> di bawah dengan <img> anda sendiri, cth:
-                     <img src="path/to/logo1.png" alt="Logo KPNiaga" class="h-12 sm:h-16 w-auto object-contain">
-                -->
-<img src="Logo_ANGKASA_CMYK.png" alt="Logo ANGKASA" class="h-12 sm:h-16 w-auto object-contain">
+                <img src="Logo_ANGKASA_CMYK.png" alt="Logo ANGKASA" class="h-12 sm:h-16 w-auto object-contain" onerror="this.src='https://via.placeholder.com/150x60?text=ANGKASA'">
 
                 <div>
                     <h1 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight leading-snug">KPNiaga</h1>
@@ -54,11 +50,7 @@
 
             <!-- Bahagian Kanan: Logo 2 -->
             <div class="flex items-center">
-                <!-- RUANG UPLOAD LOGO 2 -->
-                <!-- Sila gantikan elemen <div> di bawah me-ngan <img> anda sendiri, cth:
-                     <img src="path/to/logo2.png" alt="Logo Program BA100" class="h-12 sm:h-16 w-auto object-contain">
-                -->
-                <img src="BA100.png" alt="Logo BA100" class="h-12 sm:h-16 w-auto object-contain">
+                <img src="BA100.png" alt="Logo BA100" class="h-12 sm:h-16 w-auto object-contain" onerror="this.src='https://via.placeholder.com/150x60?text=BA100'">
             </div>
 
         </div>
@@ -174,7 +166,7 @@
                     </div>
 
                     <!-- Seksyen 3: Maklumat Produk & Jenama -->
-                    <div class="space-y-4 pt-2">
+                    <div class="space-y-5 pt-2">
                         <div class="flex items-center space-x-2 text-slate-900 font-semibold text-sm uppercase tracking-wide border-b border-slate-100 pb-2">
                             <i class="fa-solid fa-box-archive text-slate-500"></i>
                             <span>3. Maklumat Produk & Jenama</span>
@@ -222,6 +214,144 @@
                             </div>
                             <input type="hidden" id="jenamaProdukHidden" required>
                         </div>
+
+                        <!-- 8. Kawasan Liputan Penghantaran / Coverage Area -->
+                        <div class="pt-2">
+                            <label class="block text-sm font-medium text-slate-700 mb-1.5">
+                                Kawasan Liputan Penghantaran (Coverage Area) <span class="text-red-500">*</span>
+                            </label>
+                            <p class="text-xs text-slate-500 mb-3">Sila pilih kawasan / negeri yang diliputi oleh perkhidmatan penghantaran barangan syarikat anda.</p>
+
+                            <!-- Group Select (Pilihan Pantas) -->
+                            <div class="flex flex-wrap gap-2 mb-4 bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
+                                <span class="text-xs font-semibold text-slate-600 self-center mr-1">Pilihan Pantas:</span>
+                                <button type="button" onclick="selectPresetCoverage('all')" 
+                                    class="px-3 py-1.5 text-xs font-medium rounded-lg bg-blue-100 text-blue-800 hover:bg-blue-200 transition border border-blue-200">
+                                    <i class="fa-solid fa-globe text-[10px] mr-1"></i> Seluruh Malaysia
+                                </button>
+                                <button type="button" onclick="selectPresetCoverage('peninsula')" 
+                                    class="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-200 text-slate-800 hover:bg-slate-300 transition border border-slate-300">
+                                    <i class="fa-solid fa-map-location-dot text-[10px] mr-1"></i> Semenanjung Sahaja
+                                </button>
+                                <button type="button" onclick="selectPresetCoverage('borneo')" 
+                                    class="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-200 text-slate-800 hover:bg-slate-300 transition border border-slate-300">
+                                    <i class="fa-solid fa-tree text-[10px] mr-1"></i> Borneo Sahaja
+                                </button>
+                                <button type="button" onclick="selectPresetCoverage('clear')" 
+                                    class="px-3 py-1.5 text-xs font-medium rounded-lg bg-red-50 text-red-700 hover:bg-red-100 transition border border-red-200 ml-auto">
+                                    Reset Pilihan
+                                </button>
+                            </div>
+
+                            <!-- Grid Checkbox Negeri -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 bg-white p-4 rounded-xl border border-slate-200 max-h-64 overflow-y-auto">
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Perlis" data-region="peninsula" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Perlis</span>
+                                </label>
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Kedah" data-region="peninsula" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Kedah</span>
+                                </label>
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Pulau Pinang" data-region="peninsula" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Pulau Pinang</span>
+                                </label>
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Perak" data-region="peninsula" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Perak</span>
+                                </label>
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Selangor dan Wilayah Persekutuan" data-region="peninsula" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Selangor dan Wilayah Persekutuan</span>
+                                </label>
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Negeri Sembilan" data-region="peninsula" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Negeri Sembilan</span>
+                                </label>
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Melaka" data-region="peninsula" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Melaka</span>
+                                </label>
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Johor" data-region="peninsula" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Johor</span>
+                                </label>
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Kelantan" data-region="peninsula" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Kelantan</span>
+                                </label>
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Terengganu" data-region="peninsula" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Terengganu</span>
+                                </label>
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Pahang" data-region="peninsula" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Pahang</span>
+                                </label>
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Sabah" data-region="borneo" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Sabah</span>
+                                </label>
+                                <label class="flex items-center space-x-2.5 p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer transition">
+                                    <input type="checkbox" name="coverageArea" value="Sarawak" data-region="borneo" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+                                    <span class="text-xs font-medium text-slate-700">Sarawak</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 9. Senarai Harga Produk (Template Google Drive & Upload) -->
+                        <div class="pt-4 border-t border-slate-100 space-y-3">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700">
+                                        9. Senarai Harga Produk <span class="text-red-500">*</span>
+                                    </label>
+                                    <p class="text-xs text-slate-500">Muat turun template borang harga, isikan butiran produk syarikat anda, dan muat naik semula borang tersebut dalam format Excel/CSV.</p>
+                                </div>
+
+                                <!-- Butang Download Template Direct dari Google Drive -->
+                                <a href="https://docs.google.com/spreadsheets/d/1EmUsodmtUMByAWbkjJKLPtQJuPmWT7TV/export?format=xlsx" 
+                                   target="_blank" download
+                                   class="inline-flex items-center justify-center gap-2 px-3.5 py-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 rounded-xl text-xs font-semibold transition shrink-0 self-start sm:self-auto shadow-sm">
+                                    <i class="fa-solid fa-file-excel text-emerald-600 text-sm"></i>
+                                    <span>Muat Turun Template (Excel)</span>
+                                </a>
+                            </div>
+
+                            <!-- Ruangan Upload File -->
+                            <div class="relative">
+                                <input type="file" id="failHargaProduk" accept=".xlsx, .xls, .csv" class="hidden" onchange="handleFileSelect(event)">
+                                
+                                <div id="uploadDropzone" onclick="document.getElementById('failHargaProduk').click()" 
+                                    class="border-2 border-dashed border-slate-300 hover:border-blue-500 bg-slate-50/50 hover:bg-blue-50/30 rounded-2xl p-5 text-center cursor-pointer transition flex flex-col items-center justify-center space-y-2">
+                                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-lg">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    </div>
+                                    <div class="space-y-0.5">
+                                        <p class="text-xs font-semibold text-slate-700">Klik untuk pilih fail borang atau seret & lepas di sini</p>
+                                        <p class="text-[11px] text-slate-400">Format diterima: .xlsx, .xls, .csv (Maksimum 10MB)</p>
+                                    </div>
+                                </div>
+
+                                <!-- Indikator Fail Telah Dipilih -->
+                                <div id="selectedFileInfo" class="hidden bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex items-center justify-between">
+                                    <div class="flex items-center space-x-3 overflow-hidden">
+                                        <div class="p-2.5 bg-emerald-600 text-white rounded-xl shrink-0">
+                                            <i class="fa-solid fa-file-excel text-lg"></i>
+                                        </div>
+                                        <div class="truncate">
+                                            <p id="fileNameDisplay" class="text-xs font-bold text-slate-800 truncate">senarai_harga.xlsx</p>
+                                            <p id="fileSizeDisplay" class="text-[11px] text-emerald-700 font-medium">125 KB</p>
+                                        </div>
+                                    </div>
+                                    <button type="button" onclick="removeSelectedFile()" class="p-1.5 text-slate-400 hover:text-red-600 transition shrink-0" title="Padam fail">
+                                        <i class="fa-solid fa-circle-xmark text-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Action Buttons -->
@@ -286,9 +416,17 @@
                             <span class="text-slate-500 font-medium">Kategori Produk:</span>
                             <span id="previewKategoriProduk" class="col-span-2 text-slate-800 font-medium"></span>
                         </div>
-                        <div class="grid grid-cols-3">
+                        <div class="grid grid-cols-3 border-b border-slate-200/60 pb-2">
                             <span class="text-slate-500 font-medium">Jenama Produk:</span>
                             <span id="previewJenamaProduk" class="col-span-2 text-slate-800"></span>
+                        </div>
+                        <div class="grid grid-cols-3 border-b border-slate-200/60 pb-2">
+                            <span class="text-slate-500 font-medium">Kawasan Liputan:</span>
+                            <span id="previewKawasanLiputan" class="col-span-2 text-slate-800 font-medium"></span>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <span class="text-slate-500 font-medium">Fail Senarai Harga:</span>
+                            <span id="previewFailHarga" class="col-span-2 text-blue-700 font-semibold truncate"></span>
                         </div>
                     </div>
 
@@ -351,12 +489,37 @@
     <script>
         // ================================================================
         // WAJIB: TAMPAL PAUTAN WEB APP GOOGLE APPS SCRIPT ANDA DI BAWAH:
-        // Contoh: "https://script.google.com/macros/s/AKfycbXXXXXXXXX/exec"
         // ================================================================
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwTWeLzgeriEnL9YiJu69vrdAiUmcyA1fdy3QQddxfzBSWcp2mqGDoQUEyWCZORX7YiIg/exec";
 
-        // Array menyimpan senarai jenama
+        // Array menyimpan senarai jenama & pembolehubah fail
         let brandsList = [];
+        let selectedPriceFile = null;
+
+        // Pengendalian Fail Upload
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Semak saiz fail (Maksimum 10MB)
+                if (file.size > 10 * 1024 * 1024) {
+                    alert('Saiz fail melebihi had 10MB. Sila pilih fail yang lebih kecil.');
+                    removeSelectedFile();
+                    return;
+                }
+                selectedPriceFile = file;
+                document.getElementById('fileNameDisplay').innerText = file.name;
+                document.getElementById('fileSizeDisplay').innerText = (file.size / 1024).toFixed(1) + ' KB';
+                document.getElementById('uploadDropzone').classList.add('hidden');
+                document.getElementById('selectedFileInfo').classList.remove('hidden');
+            }
+        }
+
+        function removeSelectedFile() {
+            selectedPriceFile = null;
+            document.getElementById('failHargaProduk').value = '';
+            document.getElementById('uploadDropzone').classList.remove('hidden');
+            document.getElementById('selectedFileInfo').classList.add('hidden');
+        }
 
         // Handler untuk kekunci 'Enter' pada input jenama
         document.getElementById('jenamaInput').addEventListener('keydown', function(e) {
@@ -407,6 +570,29 @@
             }
         }
 
+        // Fungsi Pilihan Pantas Kumpulan Negeri (Group Select)
+        function selectPresetCoverage(preset) {
+            const checkboxes = document.querySelectorAll('input[name="coverageArea"]');
+            checkboxes.forEach(cb => {
+                const region = cb.getAttribute('data-region');
+                if (preset === 'all') {
+                    cb.checked = true;
+                } else if (preset === 'peninsula') {
+                    cb.checked = (region === 'peninsula');
+                } else if (preset === 'borneo') {
+                    cb.checked = (region === 'borneo');
+                } else if (preset === 'clear') {
+                    cb.checked = false;
+                }
+            });
+        }
+
+        // Mendapatkan senarai kawasan liputan yang dipilih
+        function getSelectedCoverageAreas() {
+            const checkboxes = document.querySelectorAll('input[name="coverageArea"]:checked');
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+
         // Semak borang dan buka modal
         function handleFormSubmit(e) {
             e.preventDefault();
@@ -414,6 +600,17 @@
             if (brandsList.length === 0) {
                 alert('Sila masukkan sekurang-kurangnya satu Jenama Produk.');
                 document.getElementById('jenamaInput').focus();
+                return;
+            }
+
+            const selectedAreas = getSelectedCoverageAreas();
+            if (selectedAreas.length === 0) {
+                alert('Sila pilih sekurang-kurangnya satu Kawasan Liputan Penghantaran.');
+                return;
+            }
+
+            if (!selectedPriceFile) {
+                alert('Sila muat naik borang Senarai Harga Produk syarikat anda.');
                 return;
             }
 
@@ -425,6 +622,15 @@
             document.getElementById('previewEmailPegawai').innerText = document.getElementById('emailPegawai').value;
             document.getElementById('previewKategoriProduk').innerText = document.getElementById('kategoriProduk').value;
             document.getElementById('previewJenamaProduk').innerText = brandsList.join(', ');
+            document.getElementById('previewFailHarga').innerText = selectedPriceFile ? `${selectedPriceFile.name} (${(selectedPriceFile.size / 1024).toFixed(1)} KB)` : '-';
+            
+            // Format paparan kawasan liputan
+            const allCount = document.querySelectorAll('input[name="coverageArea"]').length;
+            if (selectedAreas.length === allCount) {
+                document.getElementById('previewKawasanLiputan').innerText = 'Seluruh Malaysia (' + selectedAreas.length + ' Negeri/Wilayah)';
+            } else {
+                document.getElementById('previewKawasanLiputan').innerText = selectedAreas.join(', ');
+            }
 
             // Tunjukkan modal
             document.getElementById('confirmModal').classList.remove('hidden');
@@ -434,15 +640,38 @@
             document.getElementById('confirmModal').classList.add('hidden');
         }
 
+        // Helper Tukar Fail kepada Base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const base64String = reader.result.split(',')[1];
+                    resolve(base64String);
+                };
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+
         // Sahkan hantaran & POST data ke Google Apps Script
         async function confirmAndSubmit() {
             const btnSubmit = document.getElementById('btnSubmitConfirm');
             btnSubmit.disabled = true;
-            btnSubmit.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Menghantar Rekod...</span>`;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Menghantar Rekod & Fail...</span>`;
 
             // Jana Nombor Rujukan Rawak
             const randomNum = Math.floor(1000 + Math.random() * 9000);
             const refNum = `BA100-2026-${randomNum}`;
+            const selectedAreas = getSelectedCoverageAreas();
+
+            let fileBase64 = "";
+            if (selectedPriceFile) {
+                try {
+                    fileBase64 = await fileToBase64(selectedPriceFile);
+                } catch (err) {
+                    console.error("Gagal membaca fail:", err);
+                }
+            }
 
             const payload = {
                 refNumber: refNum,
@@ -452,7 +681,11 @@
                 noTelefon: document.getElementById('noTelefon').value,
                 emailPegawai: document.getElementById('emailPegawai').value,
                 kategoriProduk: document.getElementById('kategoriProduk').value,
-                jenamaProduk: brandsList.join(', ')
+                jenamaProduk: brandsList.join(', '),
+                kawasanLiputan: selectedAreas.join(', '),
+                fileName: selectedPriceFile ? selectedPriceFile.name : "",
+                fileType: selectedPriceFile ? selectedPriceFile.type : "",
+                fileData: fileBase64
             };
 
             // Hantar ke Google Apps Script jika URL telah dikemas kini
@@ -492,6 +725,8 @@
             document.getElementById('supplierForm').reset();
             brandsList = [];
             renderBrands();
+            removeSelectedFile();
+            selectPresetCoverage('clear');
         }
 
         // Hantar permohonan baharu
