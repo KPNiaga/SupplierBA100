@@ -488,7 +488,7 @@
 
     <script>
         // ================================================================
-        // WAJIB: TAMPAL PAUTAN WEB APP GOOGLE APPS SCRIPT BAHARU ANDA DI BAWAH:
+        // WAJIB: TAMPAL PAUTAN WEB APP GOOGLE APPS SCRIPT ANDA DI BAWAH:
         // ================================================================
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwXjc4egmQmgx3seZ7sWqti30XJY7DRgh1qOwYZoG7v14b1reVPAT3TsRh3GAFhFZTXkA/exec";
 
@@ -500,6 +500,7 @@
         function handleFileSelect(event) {
             const file = event.target.files[0];
             if (file) {
+                // Semak saiz fail (Maksimum 10MB)
                 if (file.size > 10 * 1024 * 1024) {
                     alert('Saiz fail melebihi had 10MB. Sila pilih fail yang lebih kecil.');
                     removeSelectedFile();
@@ -687,8 +688,8 @@
                 fileData: fileBase64
             };
 
-            // Hantar data ke Google Apps Script
-            if (GOOGLE_SCRIPT_URL) {
+            // Hantar ke Google Apps Script jika URL telah dikemas kini
+            if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbz29oaNU-xnneMMStbqad81Po2ZjJM-Bw1CirKscMqPpWt8J-1gSLMYvJRRCsCMelDPhg/exec") {
                 try {
                     await fetch(GOOGLE_SCRIPT_URL, {
                         method: 'POST',
@@ -701,6 +702,8 @@
                 } catch (err) {
                     console.error("Isu semasa menghantar data ke Google Sheet:", err);
                 }
+            } else {
+                console.warn("Google Script URL belum dimasukkan di dalam skrip JavaScript.");
             }
 
             document.getElementById('refNumber').innerText = refNum;
